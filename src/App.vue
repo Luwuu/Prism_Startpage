@@ -1,11 +1,14 @@
 <template>
+	<SearchBar />
 	<MainContent />
 </template>
 
 <script>
+import SearchBar from '@/components/SearchBar.vue'
 import MainContent from '@/components/MainContent.vue'
 export default {
 	components: {
+		SearchBar,
 		MainContent,
 	},
 }
@@ -14,10 +17,11 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,200;1,300&display=swap');
 :root {
-	--primary-color: #b66e29;
+	--primary-color: #40b992;
 	--text-color: #fff;
-	--bg-color: #aa4a1b;
+	--bg-color: #ad4727;
 }
+
 html {
 	font-size: 62.5%;
 }

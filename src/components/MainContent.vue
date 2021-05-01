@@ -107,16 +107,12 @@ export default {
 		}
 	},
 	mounted() {
-		this.updateMode()
 		//Setup Key Event
 		document.addEventListener('keydown', (event) => {
 			this.mode = event.key == '`' ? 0 : +event.key
 		})
 		//Vanilla Tilt
-		VanillaTilt.init(document.querySelector('.card__content'), {
-			max: 25,
-			speed: 400,
-		})
+		this.activateTilt()
 	},
 	watch: {
 		mode() {
@@ -125,6 +121,15 @@ export default {
 		},
 	},
 	methods: {
+		activateTilt() {
+			VanillaTilt.init(document.querySelector('.card__content'), {
+				max: 25,
+				speed: 400,
+			})
+		},
+		removeTilt() {
+			this.$refs.content.vanillaTilt?.destroy()
+		},
 		checkKeyPress(key) {
 			alert(key)
 		},
@@ -140,17 +145,15 @@ export default {
 		},
 		updateMode() {
 			switch (this.mode) {
+				case 0:
+					this.activateTilt()
+					break
 				case 1:
-					this.category = this.config[0]
-					break
 				case 2:
-					this.category = this.config[1]
-					break
 				case 3:
-					this.category = this.config[2]
-					break
 				case 4:
-					this.category = this.config[3]
+					this.category = this.config[this.mode - 1]
+					this.removeTilt()
 					break
 			}
 		},
