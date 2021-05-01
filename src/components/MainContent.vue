@@ -1,8 +1,11 @@
 <template>
-	<SearchBar
-		@enableHotkeys="hotkeys = true"
-		@disableHotkeys="hotkeys = false"
-	/>
+	<transition name="search">
+		<SearchBar
+			v-if="searchVisible"
+			@enableHotkeys="hotkeys = true"
+			@disableHotkeys="hotkeys = false"
+		/>
+	</transition>
 	<div class="card">
 		<div class="card__backdrop" ref="card"></div>
 		<div class="card__content" ref="content">
@@ -22,7 +25,7 @@
 					:href="link[1]"
 					v-for="link in activeCategory.links"
 					:key="link[0]"
-					class="links__link"
+					class="links__link .btn-text"
 					>{{ link[0] }}</a
 				>
 				<button @click="mode = 0" class="btn">Back to image</button>
@@ -69,6 +72,7 @@ export default {
 	},
 	data() {
 		return {
+			searchVisible: false,
 			hotkeys: true,
 			image:
 				'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a62b63a0-c6c7-4d49-8331-000bbca6d366/deculn3-7d953a40-f478-410c-a549-642cce6d8cfb.png/v1/fill/w_896,h_891,strp/aw_by_fadocanslap_deculn3-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI3MyIsInBhdGgiOiJcL2ZcL2E2MmI2M2EwLWM2YzctNGQ0OS04MzMxLTAwMGJiY2E2ZDM2NlwvZGVjdWxuMy03ZDk1M2E0MC1mNDc4LTQxMGMtYTU0OS02NDJjY2U2ZDhjZmIucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.6v3a1NdxqM3DawevnATeaZMVOau92JbQxGvNrhtpYxw',
@@ -86,22 +90,29 @@ export default {
 					links: [
 						['wallpapers', 'https://wallhaven.cc'],
 						['nyaa', 'https://nyaa.si'],
+						['animepahe', 'https://animpahe.com121'],
+						['animelist', 'https://nippah.com/user/kaiandlulu'],
 					],
 				},
 				//Mode 2
 				{
 					category: 'Social',
 					links: [
-						['YouTube', 'https://wallhaven.cc'],
-						['Reddit', 'https://nyaa.si'],
+						['YouTube', 'https://youtube.com'],
+						['Reddit', 'https://reddit.com'],
+						['Twitter', 'https://twitter.com'],
 					],
 				},
 				//Mode 3
 				{
 					category: 'Programming',
 					links: [
-						['YouTube', 'https://wallhaven.cc'],
-						['Reddit', 'https://nyaa.si'],
+						['Github', 'https://github.com'],
+						['StackOverflow', 'https://stackoverflow.com'],
+						['Codepen', 'https://codepen.io'],
+						['CodinGame', 'https://codingame.com'],
+						['W3 Schools', 'https://w3schools.com'],
+						['Vue Docs', 'https://v3.vuejs.org/'],
 					],
 				},
 				//Mode 4
@@ -119,7 +130,32 @@ export default {
 	mounted() {
 		//Setup Key Event
 		document.addEventListener('keydown', (event) => {
-			if (this.hotkeys) this.mode = event.key == '`' ? 0 : +event.key
+			if (this.hotkeys) {
+				switch (event.key) {
+					case '0':
+					case '`':
+					case '5':
+						this.mode = 0
+						break
+					case '1':
+						this.mode = 1
+						break
+					case '2':
+						this.mode = 2
+						break
+					case '3':
+						this.mode = 3
+						break
+					case '4':
+						this.mode = 4
+						break
+					case 's':
+					case ' ':
+						this.mode = 0
+						this.searchVisible = !this.searchVisible
+						break
+				}
+			}
 		})
 		//Vanilla Tilt
 		this.activateTilt()
@@ -195,6 +231,34 @@ export default {
 	to {
 		transform: translateY(0%);
 	}
+}
+
+.search-enter-from {
+	opacity: 0;
+	transform: translateY(-30rem);
+}
+
+.search-enter-active {
+	transition: all 0.3s ease-out;
+}
+
+.search-enter-to {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.search-leave-from {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.search-leave-active {
+	transition: all 0.3s ease-in;
+}
+
+.search-leave-to {
+	opacity: 0;
+	transform: translateY(-30rem);
 }
 
 .underline {
@@ -292,16 +356,36 @@ export default {
 	flex-direction: column;
 	color: var(--text-color);
 	* {
-		margin-bottom: 1rem;
+		margin-bottom: 1.5rem;
 	}
 	&__category {
 		font-size: 2.4rem;
 	}
 	&__link {
+		position: relative;
+		text-decoration: none;
 		font-size: 1.6rem;
 		color: var(--text-color);
-		text-decoration: none;
-		border-bottom: 1px dotted var(--text-color);
+		width: fit-content;
+		text-align: center;
+		&:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			display: inline-block;
+			height: 1em;
+			width: 100%;
+			border-bottom: 1px solid;
+			margin-top: 10px;
+			opacity: 0;
+			transition: opacity 0.25s, transform 0.25s;
+			transform: scale(0, 1);
+		}
+
+		&:hover:after {
+			opacity: 1;
+			transform: scale(1);
+		}
 	}
 }
 
@@ -313,7 +397,8 @@ export default {
 	right: 0.5rem;
 	border: none;
 	background: transparent;
-	border-left: 2px dotted var(--text-color);
-	border-top: 2px dotted var(--text-color);
+	border-radius: 0.3rem;
+	border-left: 2px solid var(--text-color);
+	border-top: 2px solid var(--text-color);
 }
 </style>

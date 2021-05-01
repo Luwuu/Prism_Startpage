@@ -16,7 +16,7 @@ export default {
 :root {
 	--primary-color: #40b992;
 	--text-color: #fff;
-	--bg-color: #ad4727;
+	--bg-color: #895782;
 }
 
 html {
