@@ -84,45 +84,46 @@ export default {
 				`
 [
     {
-        category: 'Anime',
-        links: [
-            ['wallpapers', 'https://wallhaven.cc'],
-            ['nyaa', 'https://nyaa.si'],
-            ['animepahe', 'https://animpahe.com121'],
-            ['animelist', 'https://nippah.com/user/kaiandlulu'],
-        ],
-    },
-    {
-        category: 'Social',
-        links: [
-            ['YouTube', 'https://youtube.com'],
-            ['Reddit', 'https://reddit.com'],
-            ['Twitter', 'https://twitter.com'],
-        ],
-    },
-    {
-        category: 'Programming',
-        links: [
-            ['Github', 'https://github.com'],
-            ['StackOverflow', 'https://stackoverflow.com'],
-            ['Codepen', 'https://codepen.io'],
-            ['CodinGame', 'https://codingame.com'],
-            ['W3 Schools', 'https://w3schools.com'],
-            ['Vue Docs', 'https://v3.vuejs.org/'],
-        ],
-    },
-    {
-        category: 'Misc.',
-        links: [
-            ['YouTube', 'https://wallhaven.cc'],
-            ['Reddit', 'https://nyaa.si'],
-            [
-                'Artist Art Page',
-                'https://www.deviantart.com/fadocanslap/gallery?catpath=%2F&sort=popularity',
-            ],
-        ],
-    },
-]`,
+		"category": "Anime",
+		"links": [
+			["wallpapers", "https://wallhaven.cc"],
+			["nyaa", "https://nyaa.si"],
+			["animepahe", "https://animpahe.com"],
+			["animelist", "https://nippah.com/user/kaiandlulu"]
+		]
+	},
+	{
+		"category": "Social",
+		"links": [
+			["YouTube", "https://youtube.com"],
+			["Reddit", "https://reddit.com"],
+			["Twitter", "https://twitter.com"]
+		]
+	},
+	{
+		"category": "Programming",
+		"links": [
+			["Github", "https://github.com"],
+			["StackOverflow", "https://stackoverflow.com"],
+			["Codepen", "https://codepen.io"],
+			["CodinGame", "https://codingame.com"],
+			["W3 Schools", "https://w3schools.com"],
+			["Vue Docs", "https://v3.vuejs.org/"]
+		]
+	},
+	{
+		"category": "Misc.",
+		"links": [
+			["YouTube", "https://wallhaven.cc"],
+			["Reddit", "https://nyaa.si"],
+			[
+				"Artist Art Page",
+				"https://www.deviantart.com/fadocanslap/gallery?catpath=%2F&sort=popularity"
+			]
+		]
+	}
+]
+`,
 		}
 	},
 	watch: {
@@ -141,10 +142,7 @@ export default {
 			this.activeMenu = false
 		},
 		saveAndCloseMenu() {
-			const JSONData = JSON.stringify(this.$refs.config.value, null, 2)
-			this.$refs.config.placeholder = JSONData
-			console.log(JSON.parse(JSONData))
-			localStorage.setItem("config", JSONData)
+			localStorage.setItem("config", this.$refs.config.value)
 			localStorage.setItem("image", this.$refs.image.value)
 			this.closeMenu()
 			this.$emit("refreshComponent")
