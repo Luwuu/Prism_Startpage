@@ -210,7 +210,7 @@ export default {
                 color: var(--text-color);
                 font-weight: 600;
                 width: 100%;
-                height: 65rem;
+                height: 65vh;
                 max-height: 80vh;
                 border: none;
                 border-radius: 0.5rem;
