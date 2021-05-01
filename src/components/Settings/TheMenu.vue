@@ -80,7 +80,7 @@ export default {
 		return {
 			activeMenu: false,
 			linksExample:
-				JSON.parse(localStorage.getItem("config")) ||
+				localStorage.getItem("config") ||
 				`
 [
     {
@@ -144,6 +144,15 @@ export default {
 		saveAndCloseMenu() {
 			localStorage.setItem("config", this.$refs.config.value)
 			localStorage.setItem("image", this.$refs.image.value)
+			localStorage.setItem(
+				"colors",
+				JSON.stringify({
+					primaryColor: this.$refs.primaryColor.value,
+					textColor: this.$refs.textColor.value,
+					bgColor: this.$refs.bgColor.value,
+				})
+			)
+
 			this.closeMenu()
 			this.$emit("refreshComponent")
 		},

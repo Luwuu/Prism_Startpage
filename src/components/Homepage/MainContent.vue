@@ -90,6 +90,24 @@ export default {
 		}
 	},
 	mounted() {
+		if (
+			localStorage.getItem("colors") &&
+			localStorage.getItem("colors" == undefined)
+		) {
+			let colors = JSON.parse(localStorage.getItem("colors"))
+			document.documentElement.root.style.setProperty(
+				"--primary-color",
+				colors.primaryColor
+			)
+			document.documentElement.root.style.setProperty(
+				"--text-color",
+				colors.textColor
+			)
+			document.documentElement.root.style.setProperty(
+				"--bg-color",
+				colors.bgColor
+			)
+		}
 		this.config = JSON.parse(localStorage.getItem("config")) || [
 			//Mode 1
 			{
@@ -135,6 +153,7 @@ export default {
 				],
 			},
 		]
+		// console.log(JSON.stringify(this.config, null, 2))
 		//Setup Key Event
 		document.addEventListener("keydown", (event) => {
 			if (this.hotkeys) {
