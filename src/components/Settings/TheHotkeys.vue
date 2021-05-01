@@ -2,12 +2,12 @@
 	<div class="card">
 		<h3>Hotkeys</h3>
 		<ul class="card__list">
-			<li class="card__list-item">ImageScreen - 0 | 5 | ~</li>
-			<li class="card__list-item">Show Search - Space | s</li>
-			<li class="card__list-item">I - 1</li>
-			<li class="card__list-item">II - 2</li>
-			<li class="card__list-item">III - 3</li>
-			<li class="card__list-item">IV - 4</li>
+			<li class="card__list-item">0 | 5 | ~ - Image Screen</li>
+			<li class="card__list-item">Space | s - Show Search</li>
+			<li class="card__list-item">1 - I</li>
+			<li class="card__list-item">2 - II</li>
+			<li class="card__list-item">3 - III</li>
+			<li class="card__list-item">4 - IV</li>
 		</ul>
 		<a href="https://github.com/Lu1uu/Prism_Startpage">
 			<i class="fab fa-github"></i>

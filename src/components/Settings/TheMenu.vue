@@ -30,6 +30,7 @@
 						type="text"
 						placeholder="rgb | hsl | hex"
 						ref="primaryColor"
+						:value="primaryColor"
 					/>
 				</div>
 				<div class="menu__settings--image">
@@ -38,6 +39,7 @@
 						type="text"
 						placeholder="rgb | hsl | hex"
 						ref="textColor"
+						:value="textColor"
 					/>
 				</div>
 				<div class="menu__settings--image">
@@ -46,6 +48,7 @@
 						type="text"
 						placeholder="rgb | hsl | hex"
 						ref="bgColor"
+						:value="bgColor"
 					/>
 				</div>
 
@@ -78,6 +81,13 @@ export default {
 	},
 	data() {
 		return {
+			imageUrl:
+				localStorage.getItem("image") ||
+				"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a62b63a0-c6c7-4d49-8331-000bbca6d366/dbgryze-d07f5c26-5704-40d8-810a-beff011d3830.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2E2MmI2M2EwLWM2YzctNGQ0OS04MzMxLTAwMGJiY2E2ZDM2NlwvZGJncnl6ZS1kMDdmNWMyNi01NzA0LTQwZDgtODEwYS1iZWZmMDExZDM4MzAuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.icZkv2-SPq5mG8-NZBFbuc_JUSgV0bB8BrNA1BA-BmM",
+			primaryColor: localStorage.getItem("primaryColor") ?? "#b9878a",
+			textColor: localStorage.getItem("textColor") ?? "#fff",
+			bgColor: localStorage.getItem("bgColor") ?? "#6e5d80",
+
 			activeMenu: false,
 			linksExample:
 				localStorage.getItem("config") ||
@@ -132,11 +142,6 @@ export default {
 			else this.$emit("showContent")
 		},
 	},
-	computed: {
-		imageUrl() {
-			return localStorage.getItem("image")
-		},
-	},
 	methods: {
 		closeMenu() {
 			this.activeMenu = false
@@ -144,14 +149,9 @@ export default {
 		saveAndCloseMenu() {
 			localStorage.setItem("config", this.$refs.config.value)
 			localStorage.setItem("image", this.$refs.image.value)
-			localStorage.setItem(
-				"colors",
-				JSON.stringify({
-					primaryColor: this.$refs.primaryColor.value,
-					textColor: this.$refs.textColor.value,
-					bgColor: this.$refs.bgColor.value,
-				})
-			)
+			localStorage.setItem("primaryColor", this.$refs.primaryColor.value)
+			localStorage.setItem("textColor", this.$refs.textColor.value)
+			localStorage.setItem("bgColor", this.$refs.bgColor.value)
 
 			this.closeMenu()
 			this.$emit("refreshComponent")
@@ -211,6 +211,11 @@ export default {
 		&--image {
 			margin-bottom: 0.5rem;
 			input {
+				border: none;
+				background: var(--primary-color);
+				color: var(--text-color);
+				padding: 0.5rem;
+				border-radius: 0.5rem;
 				margin-left: 1rem;
 			}
 		}
