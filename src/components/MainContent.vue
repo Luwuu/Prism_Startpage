@@ -1,4 +1,8 @@
 <template>
+	<SearchBar
+		@enableHotkeys="hotkeys = true"
+		@disableHotkeys="hotkeys = false"
+	/>
 	<div class="card">
 		<div class="card__backdrop" ref="card"></div>
 		<div class="card__content" ref="content">
@@ -13,10 +17,10 @@
 				></div>
 			</div>
 			<div v-else class="links">
-				<h5 class="links__category">{{ category.category }}</h5>
+				<h5 class="links__category">{{ activeCategory.category }}</h5>
 				<a
 					:href="link[1]"
-					v-for="link in category.links"
+					v-for="link in activeCategory.links"
 					:key="link[0]"
 					class="links__link"
 					>{{ link[0] }}</a
@@ -57,9 +61,15 @@
 
 <script>
 import VanillaTilt from 'vanilla-tilt'
+import SearchBar from '@/components/SearchBar.vue'
+
 export default {
+	components: {
+		SearchBar,
+	},
 	data() {
 		return {
+			hotkeys: true,
 			image:
 				'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a62b63a0-c6c7-4d49-8331-000bbca6d366/deculn3-7d953a40-f478-410c-a549-642cce6d8cfb.png/v1/fill/w_896,h_891,strp/aw_by_fadocanslap_deculn3-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI3MyIsInBhdGgiOiJcL2ZcL2E2MmI2M2EwLWM2YzctNGQ0OS04MzMxLTAwMGJiY2E2ZDM2NlwvZGVjdWxuMy03ZDk1M2E0MC1mNDc4LTQxMGMtYTU0OS02NDJjY2U2ZDhjZmIucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.6v3a1NdxqM3DawevnATeaZMVOau92JbQxGvNrhtpYxw',
 			// MODES
@@ -103,7 +113,7 @@ export default {
 					],
 				},
 			],
-			category: {},
+			activeCategory: {},
 		}
 	},
 	mounted() {
@@ -116,8 +126,10 @@ export default {
 	},
 	watch: {
 		mode() {
-			this.updateMode()
-			this.animateContent()
+			if (this.hotkeys) {
+				this.updateMode()
+				this.animateContent()
+			}
 		},
 	},
 	methods: {
@@ -130,9 +142,7 @@ export default {
 		removeTilt() {
 			this.$refs.content.vanillaTilt?.destroy()
 		},
-		checkKeyPress(key) {
-			alert(key)
-		},
+
 		animateContent() {
 			this.$refs.card.classList.add('animate--rotate')
 			this.$refs.content.classList.add('animate--fadeIn')
@@ -152,7 +162,7 @@ export default {
 				case 2:
 				case 3:
 				case 4:
-					this.category = this.config[this.mode - 1]
+					this.activeCategory = this.config[this.mode - 1]
 					this.removeTilt()
 					break
 			}

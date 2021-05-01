@@ -1,12 +1,20 @@
 <template>
 	<div class="search">
 		<div class="search__thread search__thread"></div>
-		<input type="text" class="search__bar" placeholder="Search" />
+		<input
+			@focus="$emit('disableHotkeys')"
+			@blur="$emit('enableHotkeys')"
+			type="text"
+			class="search__bar"
+			placeholder="Search"
+		/>
 	</div>
 </template>
 
 <script>
-export default {}
+export default {
+	emits: ['diableHotkeys', 'enableHotkeys'],
+}
 </script>
 
 <style lang="scss">

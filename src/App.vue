@@ -1,14 +1,11 @@
 <template>
-	<SearchBar />
 	<MainContent />
 </template>
 
 <script>
-import SearchBar from '@/components/SearchBar.vue'
 import MainContent from '@/components/MainContent.vue'
 export default {
 	components: {
-		SearchBar,
 		MainContent,
 	},
 }
