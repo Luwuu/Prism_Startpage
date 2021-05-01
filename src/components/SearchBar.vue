@@ -21,7 +21,7 @@ export default {
 .search {
 	position: absolute;
 	width: 80vw;
-	max-width: 100rem;
+	max-width: 80rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
