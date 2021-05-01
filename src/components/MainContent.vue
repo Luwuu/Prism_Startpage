@@ -76,6 +76,7 @@ export default {
 			searchVisible: false,
 			hotkeys: true,
 			image:
+				localStorage.getItem('image') ||
 				'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a62b63a0-c6c7-4d49-8331-000bbca6d366/dbgryze-d07f5c26-5704-40d8-810a-beff011d3830.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2E2MmI2M2EwLWM2YzctNGQ0OS04MzMxLTAwMGJiY2E2ZDM2NlwvZGJncnl6ZS1kMDdmNWMyNi01NzA0LTQwZDgtODEwYS1iZWZmMDExZDM4MzAuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.icZkv2-SPq5mG8-NZBFbuc_JUSgV0bB8BrNA1BA-BmM',
 			// MODES
 			// 0 - image - fade-in
@@ -84,55 +85,56 @@ export default {
 			// 3 - tab 3 - slide from right
 			// 4 - tab 4 - slide from left
 			mode: 0,
-			config: [
-				//Mode 1
-				{
-					category: 'Anime',
-					links: [
-						['wallpapers', 'https://wallhaven.cc'],
-						['nyaa', 'https://nyaa.si'],
-						['animepahe', 'https://animpahe.com121'],
-						['animelist', 'https://nippah.com/user/kaiandlulu'],
-					],
-				},
-				//Mode 2
-				{
-					category: 'Social',
-					links: [
-						['YouTube', 'https://youtube.com'],
-						['Reddit', 'https://reddit.com'],
-						['Twitter', 'https://twitter.com'],
-					],
-				},
-				//Mode 3
-				{
-					category: 'Programming',
-					links: [
-						['Github', 'https://github.com'],
-						['StackOverflow', 'https://stackoverflow.com'],
-						['Codepen', 'https://codepen.io'],
-						['CodinGame', 'https://codingame.com'],
-						['W3 Schools', 'https://w3schools.com'],
-						['Vue Docs', 'https://v3.vuejs.org/'],
-					],
-				},
-				//Mode 4
-				{
-					category: 'Misc.',
-					links: [
-						['YouTube', 'https://wallhaven.cc'],
-						['Reddit', 'https://nyaa.si'],
-						[
-							'Arist Art Page',
-							'https://www.deviantart.com/fadocanslap/gallery?catpath=%2F&sort=popularity',
-						],
-					],
-				},
-			],
+			config: [],
 			activeCategory: {},
 		}
 	},
 	mounted() {
+		this.config = JSON.parse(localStorage.getItem('config')) || [
+			//Mode 1
+			{
+				category: 'Anime',
+				links: [
+					['wallpapers', 'https://wallhaven.cc'],
+					['nyaa', 'https://nyaa.si'],
+					['animepahe', 'https://animpahe.com121'],
+					['animelist', 'https://nippah.com/user/kaiandlulu'],
+				],
+			},
+			//Mode 2
+			{
+				category: 'Social',
+				links: [
+					['YouTube', 'https://youtube.com'],
+					['Reddit', 'https://reddit.com'],
+					['Twitter', 'https://twitter.com'],
+				],
+			},
+			//Mode 3
+			{
+				category: 'Programming',
+				links: [
+					['Github', 'https://github.com'],
+					['StackOverflow', 'https://stackoverflow.com'],
+					['Codepen', 'https://codepen.io'],
+					['CodinGame', 'https://codingame.com'],
+					['W3 Schools', 'https://w3schools.com'],
+					['Vue Docs', 'https://v3.vuejs.org/'],
+				],
+			},
+			//Mode 4
+			{
+				category: 'Misc.',
+				links: [
+					['YouTube', 'https://wallhaven.cc'],
+					['Reddit', 'https://nyaa.si'],
+					[
+						'Artist Art Page',
+						'https://www.deviantart.com/fadocanslap/gallery?catpath=%2F&sort=popularity',
+					],
+				],
+			},
+		]
 		//Setup Key Event
 		document.addEventListener('keydown', (event) => {
 			if (this.hotkeys) {
@@ -181,7 +183,6 @@ export default {
 		removeTilt() {
 			this.$refs.content.vanillaTilt?.destroy()
 		},
-
 		animateContent() {
 			this.$refs.card.classList.add('animate--rotate')
 			this.$refs.content.classList.add('animate--fadeIn')
@@ -210,7 +211,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @keyframes rotate {
 	from {
 		transform: rotate(0deg);

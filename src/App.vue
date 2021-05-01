@@ -1,6 +1,11 @@
 <template>
-	<TheMenu />
-	<MainContent />
+	<TheMenu
+		v-if="!refresh"
+		@refreshComponent="refreshComponent"
+		@showContent="showContent = true"
+		@hideContent="showContent = false"
+	/>
+	<MainContent v-if="!refresh && showContent" />
 </template>
 
 <script>
@@ -10,6 +15,20 @@ export default {
 	components: {
 		MainContent,
 		TheMenu,
+	},
+	data() {
+		return {
+			refresh: false,
+			showContent: true,
+		}
+	},
+	methods: {
+		refreshComponent() {
+			this.refresh = true
+			setTimeout(() => {
+				this.refresh = false
+			}, 200)
+		},
 	},
 }
 </script>
@@ -29,6 +48,7 @@ html {
 * {
 	box-sizing: border-box;
 	margin: 0;
+	padding: 0;
 }
 
 body {
