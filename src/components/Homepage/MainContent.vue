@@ -64,8 +64,8 @@
 </template>
 
 <script>
-import VanillaTilt from 'vanilla-tilt'
-import SearchBar from '@/components/SearchBar.vue'
+import VanillaTilt from "vanilla-tilt"
+import SearchBar from "@/components/Homepage/SearchBar.vue"
 
 export default {
 	components: {
@@ -76,8 +76,8 @@ export default {
 			searchVisible: false,
 			hotkeys: true,
 			image:
-				localStorage.getItem('image') ||
-				'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a62b63a0-c6c7-4d49-8331-000bbca6d366/dbgryze-d07f5c26-5704-40d8-810a-beff011d3830.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2E2MmI2M2EwLWM2YzctNGQ0OS04MzMxLTAwMGJiY2E2ZDM2NlwvZGJncnl6ZS1kMDdmNWMyNi01NzA0LTQwZDgtODEwYS1iZWZmMDExZDM4MzAuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.icZkv2-SPq5mG8-NZBFbuc_JUSgV0bB8BrNA1BA-BmM',
+				localStorage.getItem("image") ||
+				"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a62b63a0-c6c7-4d49-8331-000bbca6d366/dbgryze-d07f5c26-5704-40d8-810a-beff011d3830.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2E2MmI2M2EwLWM2YzctNGQ0OS04MzMxLTAwMGJiY2E2ZDM2NlwvZGJncnl6ZS1kMDdmNWMyNi01NzA0LTQwZDgtODEwYS1iZWZmMDExZDM4MzAuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.icZkv2-SPq5mG8-NZBFbuc_JUSgV0bB8BrNA1BA-BmM",
 			// MODES
 			// 0 - image - fade-in
 			// 1 - tab 1 - slide from top
@@ -90,74 +90,74 @@ export default {
 		}
 	},
 	mounted() {
-		this.config = JSON.parse(localStorage.getItem('config')) || [
+		this.config = JSON.parse(localStorage.getItem("config")) || [
 			//Mode 1
 			{
-				category: 'Anime',
+				category: "Anime",
 				links: [
-					['wallpapers', 'https://wallhaven.cc'],
-					['nyaa', 'https://nyaa.si'],
-					['animepahe', 'https://animpahe.com121'],
-					['animelist', 'https://nippah.com/user/kaiandlulu'],
+					["wallpapers", "https://wallhaven.cc"],
+					["nyaa", "https://nyaa.si"],
+					["animepahe", "https://animpahe.com121"],
+					["animelist", "https://nippah.com/user/kaiandlulu"],
 				],
 			},
 			//Mode 2
 			{
-				category: 'Social',
+				category: "Social",
 				links: [
-					['YouTube', 'https://youtube.com'],
-					['Reddit', 'https://reddit.com'],
-					['Twitter', 'https://twitter.com'],
+					["YouTube", "https://youtube.com"],
+					["Reddit", "https://reddit.com"],
+					["Twitter", "https://twitter.com"],
 				],
 			},
 			//Mode 3
 			{
-				category: 'Programming',
+				category: "Programming",
 				links: [
-					['Github', 'https://github.com'],
-					['StackOverflow', 'https://stackoverflow.com'],
-					['Codepen', 'https://codepen.io'],
-					['CodinGame', 'https://codingame.com'],
-					['W3 Schools', 'https://w3schools.com'],
-					['Vue Docs', 'https://v3.vuejs.org/'],
+					["Github", "https://github.com"],
+					["StackOverflow", "https://stackoverflow.com"],
+					["Codepen", "https://codepen.io"],
+					["CodinGame", "https://codingame.com"],
+					["W3 Schools", "https://w3schools.com"],
+					["Vue Docs", "https://v3.vuejs.org/"],
 				],
 			},
 			//Mode 4
 			{
-				category: 'Misc.',
+				category: "Misc.",
 				links: [
-					['YouTube', 'https://wallhaven.cc'],
-					['Reddit', 'https://nyaa.si'],
+					["YouTube", "https://wallhaven.cc"],
+					["Reddit", "https://nyaa.si"],
 					[
-						'Artist Art Page',
-						'https://www.deviantart.com/fadocanslap/gallery?catpath=%2F&sort=popularity',
+						"Artist Art Page",
+						"https://www.deviantart.com/fadocanslap/gallery?catpath=%2F&sort=popularity",
 					],
 				],
 			},
 		]
 		//Setup Key Event
-		document.addEventListener('keydown', (event) => {
+		document.addEventListener("keydown", (event) => {
 			if (this.hotkeys) {
 				switch (event.key) {
-					case '0':
-					case '`':
-					case '5':
+					case "0":
+					case "`":
+					case "5":
 						this.mode = 0
 						break
-					case '1':
+					case "1":
 						this.mode = 1
 						break
-					case '2':
+					case "2":
 						this.mode = 2
 						break
-					case '3':
+					case "3":
 						this.mode = 3
 						break
-					case '4':
+					case "4":
 						this.mode = 4
 						break
-					case 's':
-					case ' ':
+					case "s":
+					case " ":
 						this.mode = 0
 						this.searchVisible = !this.searchVisible
 						break
@@ -175,7 +175,7 @@ export default {
 	},
 	methods: {
 		activateTilt() {
-			VanillaTilt.init(document.querySelector('.card__content'), {
+			VanillaTilt.init(document.querySelector(".card__content"), {
 				max: 25,
 				speed: 400,
 			})
@@ -184,13 +184,13 @@ export default {
 			this.$refs.content.vanillaTilt?.destroy()
 		},
 		animateContent() {
-			this.$refs.card.classList.add('animate--rotate')
-			this.$refs.content.classList.add('animate--fadeIn')
+			this.$refs.card.classList.add("animate--rotate")
+			this.$refs.content.classList.add("animate--fadeIn")
 
 			const animationTime = 300 //ms
 			setTimeout(() => {
-				this.$refs.card.classList.remove('animate--rotate')
-				this.$refs.content.classList.remove('animate--fadeIn')
+				this.$refs.card.classList.remove("animate--rotate")
+				this.$refs.content.classList.remove("animate--fadeIn")
 			}, animationTime)
 		},
 		updateMode() {
@@ -383,7 +383,7 @@ export default {
 		width: fit-content;
 		text-align: center;
 		&:after {
-			content: '';
+			content: "";
 			position: absolute;
 			left: 0;
 			display: inline-block;
