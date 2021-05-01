@@ -9,6 +9,12 @@
 			<li class="card__list-item">3 - III</li>
 			<li class="card__list-item">4 - IV</li>
 		</ul>
+		<h3>Search Shortcuts</h3>
+		<ul class="card__list">
+			<li class="card__list-item">-g Google</li>
+			<li class="card__list-item">-r Reddit</li>
+			<li class="card__list-item">-y YouTube</li>
+		</ul>
 		<a href="https://github.com/Lu1uu/Prism_Startpage">
 			<i class="fab fa-github"></i>
 		</a>
