@@ -119,17 +119,15 @@ export default {
 	mounted() {
 		//Setup Key Event
 		document.addEventListener('keydown', (event) => {
-			this.mode = event.key == '`' ? 0 : +event.key
+			if (this.hotkeys) this.mode = event.key == '`' ? 0 : +event.key
 		})
 		//Vanilla Tilt
 		this.activateTilt()
 	},
 	watch: {
 		mode() {
-			if (this.hotkeys) {
-				this.updateMode()
-				this.animateContent()
-			}
+			this.updateMode()
+			this.animateContent()
 		},
 	},
 	methods: {
