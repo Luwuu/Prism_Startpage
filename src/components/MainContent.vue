@@ -1,4 +1,5 @@
 <template>
+	<div @click="searchVisible = false" class="overlay"></div>
 	<transition name="search">
 		<SearchBar
 			v-if="searchVisible"
@@ -75,7 +76,7 @@ export default {
 			searchVisible: false,
 			hotkeys: true,
 			image:
-				'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a62b63a0-c6c7-4d49-8331-000bbca6d366/deculn3-7d953a40-f478-410c-a549-642cce6d8cfb.png/v1/fill/w_896,h_891,strp/aw_by_fadocanslap_deculn3-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI3MyIsInBhdGgiOiJcL2ZcL2E2MmI2M2EwLWM2YzctNGQ0OS04MzMxLTAwMGJiY2E2ZDM2NlwvZGVjdWxuMy03ZDk1M2E0MC1mNDc4LTQxMGMtYTU0OS02NDJjY2U2ZDhjZmIucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.6v3a1NdxqM3DawevnATeaZMVOau92JbQxGvNrhtpYxw',
+				'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a62b63a0-c6c7-4d49-8331-000bbca6d366/dbgryze-d07f5c26-5704-40d8-810a-beff011d3830.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2E2MmI2M2EwLWM2YzctNGQ0OS04MzMxLTAwMGJiY2E2ZDM2NlwvZGJncnl6ZS1kMDdmNWMyNi01NzA0LTQwZDgtODEwYS1iZWZmMDExZDM4MzAuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.icZkv2-SPq5mG8-NZBFbuc_JUSgV0bB8BrNA1BA-BmM',
 			// MODES
 			// 0 - image - fade-in
 			// 1 - tab 1 - slide from top
@@ -121,6 +122,10 @@ export default {
 					links: [
 						['YouTube', 'https://wallhaven.cc'],
 						['Reddit', 'https://nyaa.si'],
+						[
+							'Arist Art Page',
+							'https://www.deviantart.com/fadocanslap/gallery?catpath=%2F&sort=popularity',
+						],
 					],
 				},
 			],
@@ -231,6 +236,14 @@ export default {
 	to {
 		transform: translateY(0%);
 	}
+}
+
+.overlay {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
 }
 
 .search-enter-from {
@@ -356,7 +369,7 @@ export default {
 	flex-direction: column;
 	color: var(--text-color);
 	* {
-		margin-bottom: 1.5rem;
+		padding-bottom: 1.5rem;
 	}
 	&__category {
 		font-size: 2.4rem;
@@ -398,7 +411,6 @@ export default {
 	border: none;
 	background: transparent;
 	border-radius: 0.3rem;
-	border-left: 2px solid var(--text-color);
-	border-top: 2px solid var(--text-color);
+	text-decoration: underline;
 }
 </style>

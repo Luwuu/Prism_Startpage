@@ -97,7 +97,7 @@ export default {
 		width: 100%;
 		height: 5rem;
 		z-index: 2000;
-		border: 2px dotted var(--primary-color);
+		border: 2px solid var(--primary-color);
 		font-size: 2rem;
 		color: rgba(0, 0, 0, 0.6);
 		font-family: poppins;
