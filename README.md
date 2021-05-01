@@ -7,7 +7,50 @@ On some browsers theres an extension called <a href="https://chrome.google.com/w
 
 Note
 * Since its saved in local storage, when you clear your cache all data will be lost, so save a file with your config if you want to save the data
-
+* In case you deleted all the json heres the template.. be careful
+``` js
+[
+    {
+		"category": "Anime",
+		"links": [
+			["wallpapers", "https://wallhaven.cc"],
+			["nyaa", "https://nyaa.si"],
+			["animepahe", "https://animpahe.com"],
+			["animelist", "https://nippah.com/user/kaiandlulu"]
+		]
+	},
+	{
+		"category": "Social",
+		"links": [
+			["YouTube", "https://youtube.com"],
+			["Reddit", "https://reddit.com"],
+			["Twitter", "https://twitter.com"]
+		]
+	},
+	{
+		"category": "Programming",
+		"links": [
+			["Github", "https://github.com"],
+			["StackOverflow", "https://stackoverflow.com"],
+			["Codepen", "https://codepen.io"],
+			["CodinGame", "https://codingame.com"],
+			["W3 Schools", "https://w3schools.com"],
+			["Vue Docs", "https://v3.vuejs.org/"]
+		]
+	},
+	{
+		"category": "Misc.",
+		"links": [
+			["YouTube", "https://wallhaven.cc"],
+			["Reddit", "https://nyaa.si"],
+			[
+				"Artist Art Page",
+				"https://www.deviantart.com/fadocanslap/gallery?catpath=%2F&sort=popularity"
+			]
+		]
+	}
+]
+```
 
 ## Project setup
 ```
