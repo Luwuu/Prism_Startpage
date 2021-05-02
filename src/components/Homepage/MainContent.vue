@@ -20,7 +20,7 @@
 					:style="{ backgroundImage: `url(${image})` }"
 				></div>
 			</div>
-			<div v-else class="links">
+			<div v-else @click="mode = 0" class="links">
 				<h5 class="links__category">{{ activeCategory.category }}</h5>
 				<a
 					:href="link[1]"
@@ -29,7 +29,6 @@
 					class="links__link .btn-text"
 					>{{ link[0] }}</a
 				>
-				<button @click="mode = 0" class="btn">Back to image</button>
 			</div>
 		</div>
 		<div
